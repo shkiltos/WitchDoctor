@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
@@ -39,10 +40,10 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     protected void configure(AuthenticationManagerBuilder auth)
             throws Exception {
         auth
-//                .authenticationProvider(authenticationProvider())
-        .inMemoryAuthentication().withUser("admin")
-        .password(bCryptPasswordEncoder().encode("admin"))
-        .roles("user");
+                .authenticationProvider(authenticationProvider());
+//        .inMemoryAuthentication().withUser("admin")
+//        .password(bCryptPasswordEncoder().encode("admin"))
+//        .roles("user");
     }
 
     @Bean
@@ -65,11 +66,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .cors()
                 .and()
                 .csrf().disable()
-                .antMatcher("/**")
                 .authorizeRequests()
-                .and()
-                .authorizeRequests()
-                .antMatchers("/login", "/resources/**").permitAll()
+                .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
+                .antMatchers("/login", "/resources/**", "/swagger-ui/index.html").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().permitAll()
