@@ -10,6 +10,6 @@ spring:
     url: jdbc:postgresql://localhost:5432/witchdoctor
     username: postgres
     password: Tsunami9
-  mv?:
-    pathmatch:
-      matching-strategy: ant-path-matcher
+#  mvc:
+#    pathmatch:
+#      matching-strategy: ant-path-matcher
