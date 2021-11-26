@@ -3,15 +3,34 @@
     flex-direction: column;
     background-color: #424242;
     align-items: center;
+    margin-top: 20px;
 }
 
 .input-form-top {
     margin-top: 15px;
     min-width: 400px;
 }
+.succ-container {
+    margin-top: 10px;
+}
 
 .input-form {
     min-width: 400px;
+}
+
+mat-card-header-text {
+    margin: 0 20px;
+
+}
+mat-card-title{
+    font-size: 19px;
+
+}
+
+mat-card-header {
+    color: whitesmoke;
+    margin: 20px 0;
+    font-size: 19px;
 }
 
 .input-form-bot {
