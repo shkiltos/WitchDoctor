@@ -34,6 +34,7 @@ dependencies {
 //	implementation 'org.liquibase:liquibase-core'
 
 	implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.5.7'
+	implementation 'com.google.maps:google-maps-services:1.0.1'
 
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
