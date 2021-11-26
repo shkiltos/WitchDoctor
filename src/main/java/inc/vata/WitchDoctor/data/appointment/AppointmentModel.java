@@ -1,6 +1,8 @@
 package inc.vata.WitchDoctor.data.appointment;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -39,4 +41,8 @@ public class AppointmentModel {
 
     @Column(name = "arrivalDate")
     private Date arrivalDate;
+
+    @Nullable
+    @Column(name = "region")
+    private String region;
 }

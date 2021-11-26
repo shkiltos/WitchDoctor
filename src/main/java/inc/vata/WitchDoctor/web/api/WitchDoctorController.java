@@ -1,6 +1,8 @@
 package inc.vata.WitchDoctor.web.api;
 
+import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
 import inc.vata.WitchDoctor.data.appointment.AppointmentRepository;
+import inc.vata.WitchDoctor.domain.service.witch_doctor.WitchDoctorService;
 import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +10,8 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(
@@ -17,16 +21,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class WitchDoctorController {
 
-    AppointmentRepository appointmentRepository;
+    WitchDoctorService witchDoctorService;
 
     @GetMapping
-    @ApiOperation("hello")
-    public String getHelloWorld() {
-        return "Hello world";
+    public List<AppointmentModel> getAppointments(String region) {
+        return this.witchDoctorService.getAppointmentModels(region);
     }
-
-//    @GetMapping
-//    public List<AppointmentModel> getAppointments(String phone) {
-//        return this.appointmentRepository.findById(phone);
-//    }
 }
