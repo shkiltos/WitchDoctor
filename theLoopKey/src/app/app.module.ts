@@ -60,7 +60,8 @@ import { HttpClientModule } from '@angular/common/http';
     MatOptionModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
