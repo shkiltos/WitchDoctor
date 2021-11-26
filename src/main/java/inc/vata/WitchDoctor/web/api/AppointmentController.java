@@ -1,7 +1,7 @@
 package inc.vata.WitchDoctor.web.api;
 
-import inc.vata.WitchDoctor.data.users.UserModel;
-import inc.vata.WitchDoctor.domain.service.users.UsersService;
+import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
+import inc.vata.WitchDoctor.domain.service.appointment.AppointmentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(
-        path = "${witchdoctor.api.prefix:}" + "/v1/users",
+        path = "${witchdoctor.api.prefix:}" + "/v1/appointment",
         consumes = MediaType.APPLICATION_JSON_VALUE,
         produces = MediaType.APPLICATION_JSON_VALUE)
 @RequiredArgsConstructor
-public class UsersController {
+public class AppointmentController {
 
-    private final UsersService usersService;
+    private final AppointmentService appointmentService;
 
     @PostMapping
-    public UserModel createUser(@RequestBody UserModel userModel) {
-        return this.usersService.createUser(userModel);
+    public AppointmentModel createRecord(@RequestBody AppointmentModel appointmentModel) {
+        return this.appointmentService.createAppointment(appointmentModel);
     }
 
 

@@ -18,4 +18,9 @@ public class WitchDoctorController {
     public String getHelloWorld() {
         return "Hello world";
     }
+
+//    @GetMapping
+//    public AppointmentModel getMapRoutes() {
+//
+//    }
 }
