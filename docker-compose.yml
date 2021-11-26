@@ -1,0 +1,15 @@
+version: "3"
+services:
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8280:8080
+  db:
+    image: "postgres:13"
+    container_name: "my_postgres"
+    environment:
+      POSTGRES_USER: "postgres"
+      POSTGRES_PASSWORD: "postgres"
+    ports:
+      - "5432:5432"
