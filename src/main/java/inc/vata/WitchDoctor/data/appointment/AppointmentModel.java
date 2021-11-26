@@ -2,7 +2,6 @@ package inc.vata.WitchDoctor.data.appointment;
 
 import com.sun.istack.Nullable;
 import lombok.Data;
-import org.springframework.beans.factory.annotation.Required;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

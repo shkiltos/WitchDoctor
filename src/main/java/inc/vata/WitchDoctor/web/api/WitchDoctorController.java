@@ -1,9 +1,7 @@
 package inc.vata.WitchDoctor.web.api;
 
 import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
-import inc.vata.WitchDoctor.data.appointment.AppointmentRepository;
 import inc.vata.WitchDoctor.domain.service.witch_doctor.WitchDoctorService;
-import io.swagger.annotations.ApiOperation;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
