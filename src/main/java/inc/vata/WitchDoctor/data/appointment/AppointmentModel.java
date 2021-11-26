@@ -19,8 +19,14 @@ public class AppointmentModel {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "house")
+    private String house;
+
+    @Column(name = "apartment")
+    private String apartment;
 
     @Column(name = "fullName")
     private String fullName;

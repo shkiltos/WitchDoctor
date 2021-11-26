@@ -23,6 +23,4 @@ public class AppointmentController {
     public AppointmentModel createRecord(@RequestBody AppointmentModel appointmentModel) {
         return this.appointmentService.createAppointment(appointmentModel);
     }
-
-
 }
