@@ -11,7 +11,7 @@ spring:
   datasource:
     url: jdbc:postgresql://localhost:5432/witchdoctor
     username: postgres
-    password: Tsunami9
+    password: postgres
 #  mvc:
 #    pathmatch:
 #      matching-strategy: ant-path-matcher
