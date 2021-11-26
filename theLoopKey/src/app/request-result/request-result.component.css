@@ -1,20 +1,33 @@
 .example-card {
     max-width: 400px;
-}
+    height: fit-content;
 
+}
+.mar {
+    margin: 0 3%;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
 .text-container {
     display: grid;
     align-items: center;
 }
 
 .succ-container {
-    margin-top: 20px;
+    margin-top: 10px;
     justify-content: center;
+
+}
+
+mat-card:not([class*=mat-elevation-z]){
+    box-shadow: none !important;
 
 }
 
 .img-container {
     max-width: 450px;
+    margin-top: 20px;
     align-items:  center;
 
 }

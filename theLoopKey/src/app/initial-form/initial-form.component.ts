@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-initial-form',
@@ -9,7 +10,9 @@ import { HttpHeaders, HttpClient } from '@angular/common/http';
 export class InitialFormComponent implements OnInit {
 
   constructor(    
-    private http: HttpClient
+    private http: HttpClient,
+    private router: Router,
+
   ) { }
   startDate = new Date(1990, 0, 1);
   fullName: string = "";
@@ -107,6 +110,8 @@ export class InitialFormComponent implements OnInit {
             .subscribe(response => {
                 console.log(response);
             });
+        this.router.navigate(['/requestReqult']);
+
       } catch (err) {
       }
     
