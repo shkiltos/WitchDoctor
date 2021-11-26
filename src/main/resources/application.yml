@@ -1,0 +1,15 @@
+witchdoctor:
+  api:
+    prefix: /api
+spring:
+#  liquibase:
+#    change-log: classpath:db/changelogs/db.changelog-master.xml
+#    contexts: schema,initial-data,sample-data,data-migration
+#    enabled: false
+  datasource:
+    url: jdbc:postgresql://localhost:5432/witchdoctor
+    username: postgres
+    password: Tsunami9
+  mv?:
+    pathmatch:
+      matching-strategy: ant-path-matcher
