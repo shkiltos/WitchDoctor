@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - preConditions:
+      - onFail: WARN
+      - sqlCheck:
+          expectedResult: 0
+          sql: select count(*) from roles r WHERE r.name = 'user' OR r.name = 'doctor'
+
+  - changeSet:
+      - author: vladimir.orlov
+      - id: 1637920147634-4
+      - changes:
+          - insert:
+              tableName: roles
+              columns:
+                - column:
+                    name: id
+                    value: "1"
+                - column:
+                    name: name
+                    value: "user"
+          - insert:
+              tableName: roles
+              columns:
+                - column:
+                    name: id
+                    value: "2"
+                - column:
+                    name: name
+                    value: "doctor"

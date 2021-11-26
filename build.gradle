@@ -21,6 +21,7 @@ repositories {
 dependencies {
 	// Spring
 	implementation 'org.springframework.boot:spring-boot-starter'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.5.7'
 
@@ -33,9 +34,6 @@ dependencies {
 	implementation 'org.liquibase:liquibase-core'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
-
-	// https://mvnrepository.com/artifact/io.springfox/springfox-swagger2
-
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'
 
 	implementation 'org.mapstruct:mapstruct:1.4.2.Final'
@@ -45,6 +43,7 @@ dependencies {
 
 	runtimeOnly 'org.postgresql:postgresql'
 	annotationProcessor 'org.projectlombok:lombok'
+	testImplementation 'org.springframework.security:spring-security-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 
 	testImplementation group: 'junit', name: 'junit', version: '4.13'
