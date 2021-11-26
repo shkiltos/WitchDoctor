@@ -24,4 +24,6 @@ public class UsersService {
     public UserModel createUser(UserModel userModel) {
         return this.usersRepository.save(userModel);
     }
+
+
 }
