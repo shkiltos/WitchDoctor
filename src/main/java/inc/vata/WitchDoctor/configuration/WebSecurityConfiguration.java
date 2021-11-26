@@ -13,13 +13,18 @@ import org.springframework.security.authentication.dao.DaoAuthenticationProvider
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.method.configuration.EnableGlobalMethodSecurity;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.builders.WebSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.logout.HttpStatusReturningLogoutSuccessHandler;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import javax.servlet.http.HttpServletResponse;
+import java.util.Arrays;
 
 @Configuration
 @EnableWebSecurity
@@ -27,6 +32,21 @@ import javax.servlet.http.HttpServletResponse;
 @RequiredArgsConstructor(onConstructor_ ={@Autowired} )
 public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
 
+    private static final String[] AUTH_WHITELIST = {
+            // -- Swagger UI v2
+            "/v2/api-docs",
+            "/swagger-resources",
+            "/swagger-resources/**",
+            "/configuration/ui",
+            "/configuration/security",
+            "/swagger-ui.html",
+            "/webjars/**",
+            // -- Swagger UI v3 (OpenAPI)
+            "/v3/api-docs/**",
+            "/swagger-ui/**",
+            // other public endpoints of your API may be appended to this array
+            "/login", "/resources/**"
+    };
 
     @Value("${witchdoctor.security.bCryptRounds:#{12}}")
     private Integer passwordHashGenStrength;
@@ -55,6 +75,15 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         return authProvider;
     }
 
+    @Override
+    public void configure(WebSecurity webSecurity) {
+        webSecurity.ignoring()
+                .antMatchers(HttpMethod.POST, "/api/v1/users")
+                .and()
+                .ignoring()
+                .antMatchers(AUTH_WHITELIST);
+        }
+
     @Bean
     public PasswordEncoder bCryptPasswordEncoder() {
         return new BCryptPasswordEncoder(this.passwordHashGenStrength);
@@ -68,7 +97,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .csrf().disable()
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
-                .antMatchers("/login", "/resources/**", "/swagger-ui/index.html").permitAll()
+                .antMatchers(AUTH_WHITELIST).permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().permitAll()
@@ -89,5 +118,25 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                         })
                 .and()
                 .httpBasic();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        CorsConfiguration configAutenticacao = new CorsConfiguration();
+        configAutenticacao.setAllowCredentials(true);
+        configAutenticacao.setAllowedOrigins(Arrays.asList("*"));
+        configAutenticacao.setAllowedHeaders(Arrays.asList("Authorization"));
+        configAutenticacao.addAllowedHeader("Content-Type");
+        configAutenticacao.addAllowedHeader("Accept");
+        configAutenticacao.addAllowedMethod("POST");
+        configAutenticacao.addAllowedMethod("GET");
+        configAutenticacao.addAllowedMethod("DELETE");
+        configAutenticacao.addAllowedMethod("PUT");
+        configAutenticacao.addAllowedMethod("OPTIONS");
+        configAutenticacao.addAllowedMethod("PATCH");
+        configAutenticacao.setExposedHeaders(Arrays.asList("Authorization"));
+        configAutenticacao.setMaxAge(3600L);
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", configAutenticacao);
+        return source;
     }
 }
