@@ -1,7 +1,5 @@
 package inc.vata.WitchDoctor.domain.service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.gson.Gson;
 import lombok.SneakyThrows;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +25,6 @@ public class RoutingServiceImpl {
         Map<String, String> params = new HashMap<>();
         params.put("address", address);
         params.put("key", GOOGLE_API_KEY);
-
-        ObjectMapper objectMapper = new ObjectMapper();
 
         JSONObject response = new JSONObject(this.restClient.get(GOOGLE_GEO_URL, params));
         JSONObject geometry = (JSONObject)(((JSONObject)response.getJSONArray("results").get(0)).get("geometry"));
