@@ -62,7 +62,8 @@ import { RegisterComponent } from './register/register.component';
     MatOptionModule,
     MatProgressSpinnerModule,
     HttpClientModule,
-    MatProgressSpinnerModule
+    MatProgressSpinnerModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent],
