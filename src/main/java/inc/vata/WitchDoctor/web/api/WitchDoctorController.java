@@ -1,5 +1,6 @@
 package inc.vata.WitchDoctor.web.api;
 
+import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,4 +19,9 @@ public class WitchDoctorController {
     public String getHelloWorld() {
         return "Hello world";
     }
+
+//    @GetMapping
+//    public AppointmentModel getMapRoutes() {
+//
+//    }
 }

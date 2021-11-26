@@ -31,7 +31,10 @@ dependencies {
 	// Json
 	implementation group: 'org.json', name: 'json', version: '20210307'
 
-	implementation 'org.liquibase:liquibase-core'
+//	implementation 'org.liquibase:liquibase-core'
+
+	implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.5.7'
+
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	compileOnly 'org.projectlombok:lombok'
 	implementation group: 'io.springfox', name: 'springfox-boot-starter', version: '3.0.0'

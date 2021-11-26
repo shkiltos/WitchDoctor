@@ -4,10 +4,8 @@ witchdoctor:
   security:
     bCryptRounds: 12
 spring:
-  liquibase:
-    change-log: classpath:db/changelogs/db.changelog-master.yml
-    contexts: schema,initial-data,sample-data,data-migration
-    enabled: true
+  jpa:
+    hibernate.ddl-auto: "create-drop"
   datasource:
     url: jdbc:postgresql://localhost:5432/witchdoctor
     username: postgres

@@ -1,6 +1,7 @@
 package inc.vata.WitchDoctor.data.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
 import inc.vata.WitchDoctor.data.roles.RoleModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
