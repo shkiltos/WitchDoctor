@@ -8,7 +8,6 @@ import { InitialFormComponent } from './initial-form/initial-form.component';
 import { RequestResultComponent } from './request-result/request-result.component';
 import { MapTimerCustomerComponent } from './map-timer-customer/map-timer-customer.component';
 import { DoctorsMapPageComponent } from './doctors-map-page/doctors-map-page.component';
-import { AuthPageComponent } from './auth-page/auth-page.component';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';
@@ -37,7 +36,6 @@ import { HttpClientModule } from '@angular/common/http';
     RequestResultComponent,
     MapTimerCustomerComponent,
     DoctorsMapPageComponent,
-    AuthPageComponent,
     LoginComponent
   ],
   imports: [
