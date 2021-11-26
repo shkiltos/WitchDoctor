@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 
 
 @Component({
@@ -38,16 +38,16 @@ export class LoginComponent implements OnInit {
       try {
         const phone = this.form.get('phone')?.value;
         const password = this.form.get('password')?.value;
-        let body = new URLSearchParams();
-        body.set('phone', phone);
-        body.set('password', password);
+        const body = new HttpParams()
+        .set('username', phone)
+        .set('password', password);
 
         let options = {
             headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
 
         this.http
-            .post('localhost:8080/login', body.toString(), options)
+            .post('http://localhost:8080/login', body.toString(), options)
             .subscribe(response => {
                 console.log(response);
             });
