@@ -43,9 +43,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
             "/webjars/**",
             // -- Swagger UI v3 (OpenAPI)
             "/v3/api-docs/**",
-            "/swagger-ui/**",
+            "/swagger-ui/**"
             // other public endpoints of your API may be appended to this array
-            "/login", "/resources/**"
+
     };
 
     @Value("${witchdoctor.security.bCryptRounds:#{12}}")
@@ -98,6 +98,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .authorizeRequests()
                 .antMatchers(HttpMethod.POST, "/api/v1/users").permitAll()
                 .antMatchers(AUTH_WHITELIST).permitAll()
+                .antMatchers("/login", "/resources/**").permitAll()
                 .anyRequest().authenticated()
                 .and()
                 .logout().permitAll()
@@ -119,24 +120,24 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .and()
                 .httpBasic();
     }
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configAutenticacao = new CorsConfiguration();
-        configAutenticacao.setAllowCredentials(true);
-        configAutenticacao.setAllowedOrigins(Arrays.asList("*"));
-        configAutenticacao.setAllowedHeaders(Arrays.asList("Authorization"));
-        configAutenticacao.addAllowedHeader("Content-Type");
-        configAutenticacao.addAllowedHeader("Accept");
-        configAutenticacao.addAllowedMethod("POST");
-        configAutenticacao.addAllowedMethod("GET");
-        configAutenticacao.addAllowedMethod("DELETE");
-        configAutenticacao.addAllowedMethod("PUT");
-        configAutenticacao.addAllowedMethod("OPTIONS");
-        configAutenticacao.addAllowedMethod("PATCH");
-        configAutenticacao.setExposedHeaders(Arrays.asList("Authorization"));
-        configAutenticacao.setMaxAge(3600L);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configAutenticacao);
-        return source;
-    }
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configAutenticacao = new CorsConfiguration();
+//        configAutenticacao.setAllowCredentials(true);
+//        configAutenticacao.setAllowedOrigins(Arrays.asList("*"));
+//        configAutenticacao.setAllowedHeaders(Arrays.asList("Authorization"));
+//        configAutenticacao.addAllowedHeader("Content-Type");
+//        configAutenticacao.addAllowedHeader("Accept");
+//        configAutenticacao.addAllowedMethod("POST");
+//        configAutenticacao.addAllowedMethod("GET");
+//        configAutenticacao.addAllowedMethod("DELETE");
+//        configAutenticacao.addAllowedMethod("PUT");
+//        configAutenticacao.addAllowedMethod("OPTIONS");
+//        configAutenticacao.addAllowedMethod("PATCH");
+//        configAutenticacao.setExposedHeaders(Arrays.asList("Authorization"));
+//        configAutenticacao.setMaxAge(3600L);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configAutenticacao);
+//        return source;
+//    }
 }

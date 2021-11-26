@@ -4,10 +4,8 @@ import inc.vata.WitchDoctor.data.users.UserModel;
 import inc.vata.WitchDoctor.domain.service.users.UsersService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(
@@ -22,6 +20,11 @@ public class UsersController {
     @PostMapping
     public UserModel createUser(@RequestBody UserModel userModel) {
         return this.usersService.createUser(userModel);
+    }
+
+    @GetMapping
+    public UserModel whoAmI(@AuthenticationPrincipal UserModel userModel) {
+        return userModel;
     }
 
 }
