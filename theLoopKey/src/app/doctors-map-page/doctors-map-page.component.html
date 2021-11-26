@@ -1,2 +1,25 @@
-
-<div id="map"></div>
+<div class="container">
+    <div class="element">
+        <mat-grid-list cols="5" rowHeight="100px">
+            <mat-grid-tile class="map-container" [colspan]="3" [rowspan]="7">
+                <div id="map"></div>
+            </mat-grid-tile>
+            <mat-grid-tile class="appointments" [colspan]="2" [rowspan]="7">
+                <mat-list>
+                    <h2 mat-subheader>Обходной лист</h2>
+                    <mat-list-item *ngFor="let appointment of appointments; last as last">
+                        <mat-card class="example-card">
+                            <mat-card-title>{{appointment.fullName}}</mat-card-title>
+                            <mat-card-subtitle>{{appointment.address}}</mat-card-subtitle>
+                            <mat-card-content>
+                                <p>{{appointment.symptoms}}</p>
+                            </mat-card-content>
+                        </mat-card>
+                        <mat-divider></mat-divider>
+                    </mat-list-item>
+                    <mat-divider></mat-divider>
+                </mat-list>
+            </mat-grid-tile>
+        </mat-grid-list>
+    </div>
+</div>
