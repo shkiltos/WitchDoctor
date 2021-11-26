@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
   async onSubmit(): Promise<void> {
     this.phoneInvalid = false;
     this.formSubmitAttempt = false;
-    
     if (this.form.valid) {
       try {
         const phone = this.form.get('phone')?.value;
