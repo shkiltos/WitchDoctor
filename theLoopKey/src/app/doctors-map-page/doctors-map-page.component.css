@@ -1,3 +1,75 @@
 #map {
-    height: 400px;
+    height: 100%;
+    width: 100%;
+}
+
+.container {
+    width: 100%;
+    display: flex;
+    height: 100vh;
+    margin: auto;
+}
+
+.element {
+    margin: auto;
+    width: 70%;
+}
+
+
+/* 
+.appointments {
+} */
+
+mat-list {
+    width: 100%;
+    margin-left: 20px;
+    margin-right: 20px;
+}
+
+::ng-deep .appointments .mat-grid-tile-content {
+    align-items: start !important;
+    box-shadow: inset;
+}
+
+mat-card-title {
+    margin-bottom: 5px;
+    font-size: 17px;
+}
+
+mat-card-subtitle {
+    font-size: 12px;
+}
+
+mat-card-content {
+    font-size: 12px;
+}
+
+mat-list h2 {
+    text-align: center;
+    padding-top: 15px;
+}
+
+#container {
+    height: 100%;
+    display: flex;
+}
+
+#sidebar {
+    flex-basis: 15rem;
+    flex-grow: 1;
+    padding: 1rem;
+    max-width: 30rem;
+    height: 100%;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+#map {
+    flex-basis: 0;
+    flex-grow: 4;
+    height: 100%;
+}
+
+#directions-panel {
+    margin-top: 10px;
 }

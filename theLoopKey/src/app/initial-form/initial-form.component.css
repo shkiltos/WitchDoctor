@@ -1,6 +1,7 @@
 :host {
     display: flex;
     flex-direction: column;
+    background-color: #424242;
     align-items: center;
     margin-top: 20px;
 }
