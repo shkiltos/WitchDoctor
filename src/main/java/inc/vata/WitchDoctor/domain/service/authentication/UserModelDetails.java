@@ -1,6 +1,7 @@
 package inc.vata.WitchDoctor.domain.service.authentication;
 
 import inc.vata.WitchDoctor.data.users.UserModel;
+import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -11,6 +12,7 @@ import java.util.Collections;
 @RequiredArgsConstructor
 public class UserModelDetails implements UserDetails {
 
+    @Getter
     private final UserModel user;
 
     @Override

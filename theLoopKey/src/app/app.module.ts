@@ -27,6 +27,7 @@ import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { HttpClientModule } from '@angular/common/http';
+import {MatGridListModule} from '@angular/material/grid-list';
 import { RegisterComponent } from './register/register.component';
 
 
@@ -63,7 +64,7 @@ import { RegisterComponent } from './register/register.component';
     MatProgressSpinnerModule,
     HttpClientModule,
     MatProgressSpinnerModule,
-    
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],

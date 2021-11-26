@@ -1,17 +1,16 @@
 package inc.vata.WitchDoctor.web.api;
 
 import inc.vata.WitchDoctor.data.users.UserModel;
+import inc.vata.WitchDoctor.domain.service.authentication.UserModelDetails;
 import inc.vata.WitchDoctor.domain.service.users.UsersService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.MediaType;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
+import springfox.documentation.annotations.ApiIgnore;
 
 @RestController
 @RequestMapping(
-        path = "${witchdoctor.api.prefix:}" + "/v1/users",
-        consumes = MediaType.APPLICATION_JSON_VALUE,
-        produces = MediaType.APPLICATION_JSON_VALUE)
+        path = "${witchdoctor.api.prefix:}" + "/v1/users")
 @RequiredArgsConstructor
 public class UsersController {
 
@@ -23,8 +22,8 @@ public class UsersController {
     }
 
     @GetMapping
-    public UserModel whoAmI(@AuthenticationPrincipal UserModel userModel) {
-        return userModel;
+    public UserModel whoAmI(@ApiIgnore @AuthenticationPrincipal UserModelDetails userModel) {
+        return userModel.getUser();
     }
 
 }
