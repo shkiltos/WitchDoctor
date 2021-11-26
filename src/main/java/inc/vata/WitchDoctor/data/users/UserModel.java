@@ -1,13 +1,19 @@
 package inc.vata.WitchDoctor.data.users;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
 import inc.vata.WitchDoctor.data.roles.RoleModel;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Getter
 @Setter
