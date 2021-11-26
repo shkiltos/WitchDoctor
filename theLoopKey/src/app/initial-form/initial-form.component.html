@@ -1,1 +1,38 @@
-<p>initial-form works!</p>
+<mat-form-field class="input-form-top" appearance="fill">
+    <mat-label>ФИО</mat-label>
+    <input matInput>
+</mat-form-field>
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Номер телефона</mat-label>
+    <input matInput #phone maxLength="11">
+    <mat-hint align="end">{{phone.value.length}} / 11</mat-hint>
+</mat-form-field>
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Ваш адрес</mat-label>
+    <input matInput>
+</mat-form-field>
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input matInput [matDatepicker]="picker">
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+</mat-form-field>
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Кому хотите вызвать врача?</mat-label>
+    <mat-select>
+        <mat-option value="one">Себе</mat-option>
+        <mat-option value="two">Ребенку</mat-option>
+        <!-- <mat-option value="tree">Другому человеку</mat-option> -->
+    </mat-select>
+</mat-form-field>
+
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Симптомы</mat-label>
+    <textarea matInput></textarea>
+</mat-form-field>
+
+<mat-form-field class="input-form" appearance="fill">
+    <mat-label>Комментарий врачу</mat-label>
+    <textarea matInput></textarea>
+</mat-form-field>
+<button mat-raised-button color="warn" class="input-form-bot">Вызвать врача</button>

@@ -1,0 +1,20 @@
+:host {
+    display: flex;
+    flex-direction: column;
+    background-color: darkgrey;
+    align-items: center;
+}
+
+.input-form-top {
+    margin-top: 15px;
+    min-width: 400px;
+}
+
+.input-form {
+    min-width: 400px;
+}
+
+.input-form-bot {
+    margin-bottom: 15px;
+    min-width: 150px;
+}

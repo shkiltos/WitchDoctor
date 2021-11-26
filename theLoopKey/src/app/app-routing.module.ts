@@ -6,6 +6,7 @@ import { RequestResultComponent } from './request-result/request-result.componen
 import { AuthPageComponent } from './auth-page/auth-page.component';
 import { DoctorsMapPageComponent } from './doctors-map-page/doctors-map-page.component';
 
+
 const routes: Routes = [
   { path: 'start', component: InitialFormComponent },
   { path: 'map', component: MapTimerCustomerComponent },
