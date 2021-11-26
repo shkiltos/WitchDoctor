@@ -5,6 +5,7 @@ import { MapTimerCustomerComponent } from './map-timer-customer/map-timer-custom
 import { RequestResultComponent } from './request-result/request-result.component';
 import { DoctorsMapPageComponent } from './doctors-map-page/doctors-map-page.component';
 import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 
 
 const routes: Routes = [
@@ -12,7 +13,8 @@ const routes: Routes = [
   { path: 'map', component: MapTimerCustomerComponent },
   { path: 'requestReqult', component: RequestResultComponent },
   { path: 'doctorsMap', component: DoctorsMapPageComponent },
-  { path: 'login', component: LoginComponent }
+  { path: 'login', component: LoginComponent },
+  { path: 'registration', component: RegisterComponent }
 ];
 
 @NgModule({

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HttpHeaders, HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-initial-form',
@@ -7,7 +8,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class InitialFormComponent implements OnInit {
 
-  constructor() { }
+  constructor(    
+    private http: HttpClient
+  ) { }
   startDate = new Date(1990, 0, 1);
   fullName: string = "";
   birthDate: string = "";
@@ -17,6 +20,12 @@ export class InitialFormComponent implements OnInit {
   symptoms: string = "";
   arrivalDate: string = "";
   forChild: boolean = false;
+
+  toPerson: string = "";
+
+  toMe: string = "Себе";
+  toChild: string = "Ребенку";
+  toAnother: string = "Другому человеку";
 
   foods: any[] = [
     {value: 'steak-0', viewValue: 'Steak'},
@@ -48,18 +57,58 @@ export class InitialFormComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClickCall(): void {
-    this.callData = {
-      "fullName": this.fullName,
-      "birthDate": this.birthDate,
-      "street": this.streetVal,
-      "house": this.houseVal,
-      "apartment": this.apartmentVal,
-      "symptoms": this.symptoms,
-      "arrivalDate": this.arrivalDate,
-      "forChild": this.forChild
-    };
-    alert(name);
-    console.log(this.callData);
+  // onClickCall(): void {
+  //   this.callData = {
+  //     "fullName": this.fullName,
+  //     "birthDate": this.birthDate,
+  //     "street": this.streetVal,
+  //     "house": this.houseVal,
+  //     "apartment": this.apartmentVal,
+  //     "symptoms": this.symptoms,
+  //     "arrivalDate": this.arrivalDate,
+  //     "forChild": this.forChild
+  //   };
+  //   alert(name);
+  //   console.log(this.callData);
+  // }
+  async onClickCall(): Promise<void> {
+      try {
+        if (this.toPerson == this.toMe){
+          this.forChild = false;
+        } else {
+          this.forChild = true;
+        }
+        this.callData = {
+          "fullName": this.fullName,
+          "birthDate": this.birthDate,
+          "street": this.streetVal,
+          "house": this.houseVal,
+          "apartment": this.apartmentVal,
+          "symptoms": this.symptoms,
+          "arrivalDate": this.arrivalDate,
+          "forChild": this.forChild
+        };
+        let body = new URLSearchParams();
+        body.set('fullName', this.fullName);
+        body.set('birthDate', this.birthDate);
+        body.set('street', this.streetVal);
+        body.set('house', this.houseVal);
+        body.set('apartment', this.apartmentVal);
+        body.set('symptoms', this.symptoms);
+        body.set('arrivalDate', this.arrivalDate);
+        body.set('forChild', this.forChild.toString());
+
+        // let options = {
+        //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        // };
+
+        this.http
+            .post('localhost:8080/api/v1/appointment', body.toString())
+            .subscribe(response => {
+                console.log(response);
+            });
+      } catch (err) {
+      }
+    
   }
 }

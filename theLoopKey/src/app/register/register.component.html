@@ -1,0 +1,27 @@
+<div class="container">
+    <div class="element">
+        <mat-card>
+            <mat-card-content>
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <h2>Регистрация</h2>
+                    <mat-error *ngIf="phoneInvalid">
+                        Номер телефона введён некорректно
+                    </mat-error>
+                    <mat-form-field class="full-width-input">
+                        <input matInput placeholder="Телефон" formControlName="phone" required>
+                        <mat-error>
+                            Пожалуйста введите корректный номер телефона
+                        </mat-error>
+                    </mat-form-field>
+                    <mat-form-field class="full-width-input">
+                        <input matInput type="password" placeholder="Пароль" formControlName="password" required>
+                        <mat-error>
+                            Пожалуйста введите корректный пароль
+                        </mat-error>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary">Зарегистрироваться</button>
+                </form>
+            </mat-card-content>
+        </mat-card>
+    </div>
+</div>

@@ -39,10 +39,10 @@
 </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Кому хотите вызвать врача?</mat-label>
-    <mat-select>
-        <mat-option value="one">Себе</mat-option>
-        <mat-option value="two">Ребенку</mat-option>
-        <!-- <mat-option value="tree">Другому человеку</mat-option> -->
+    <mat-select [(ngModel)]="toPerson">
+        <mat-option value="one">{{toMe}}</mat-option>
+        <mat-option value="two">{{toChild}}</mat-option>
+        <mat-option value="tree">{{toAnother}}</mat-option>
     </mat-select>
 </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">

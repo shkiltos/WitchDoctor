@@ -2,15 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { HttpHeaders, HttpClient } from '@angular/common/http';
-import { RouterModule, Routes } from '@angular/router';
-
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class LoginComponent implements OnInit {
+export class RegisterComponent implements OnInit {
   form: FormGroup;
   public phoneInvalid = false;
   private formSubmitAttempt = false;
@@ -19,7 +17,7 @@ export class LoginComponent implements OnInit {
     private fb: FormBuilder,
     private route: ActivatedRoute,
     private router: Router,
-    private http: HttpClient,
+    private http: HttpClient
   ) {
 
     this.form = this.fb.group({
@@ -43,24 +41,24 @@ export class LoginComponent implements OnInit {
         body.set('phone', phone);
         body.set('password', password);
 
-        let options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-        };
+        // let options = {
+        //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+        // };
 
         this.http
-            .post('localhost:8080/login', body.toString(), options)
+            .post('localhost:8080/api/v1/users', body.toString())
             .subscribe(response => {
                 console.log(response);
             });
-            this.router.navigate(['/start']);
+        this.router.navigate(['/login']);
 
       } catch (err) {
-        this.router.navigate(['/start']);
+        this.router.navigate(['/login']);
 
         this.phoneInvalid = true;
       }
     } else {
-      this.router.navigate(['/start']);
+      this.router.navigate(['/login']);
 
       this.formSubmitAttempt = true;
     }
