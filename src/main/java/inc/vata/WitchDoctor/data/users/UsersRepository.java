@@ -9,4 +9,6 @@ import java.util.Optional;
 public interface UsersRepository extends JpaRepository<UserModel, Integer> {
 
     Optional<UserModel> findFirstByUsernameIgnoreCase(String username);
+    UserModel findFirstByUsernameOrEmail(String arg1, String arg2);
+    UserModel findUserModelById(Integer id);
 }
