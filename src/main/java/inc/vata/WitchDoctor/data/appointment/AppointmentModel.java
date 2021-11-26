@@ -1,5 +1,6 @@
 package inc.vata.WitchDoctor.data.appointment;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -39,4 +40,8 @@ public class AppointmentModel {
 
     @Column(name = "arrivalDate")
     private Date arrivalDate;
+
+    @Nullable
+    @Column(name = "region")
+    private String region;
 }

@@ -1,19 +1,39 @@
-<mat-form-field class="input-form-top" appearance="fill">
+<mat-form-field class="input-form-top" appearance="fill" >
     <mat-label>ФИО</mat-label>
-    <input matInput>
+    <input matInput [(ngModel)]="fullName">
 </mat-form-field>
-<mat-form-field class="input-form" appearance="fill">
+<!-- <mat-form-field class="input-form" appearance="fill">
     <mat-label>Номер телефона</mat-label>
-    <input matInput #phone maxLength="11">
+    <input matInput #phone maxLength="11" >
     <mat-hint align="end">{{phone.value.length}} / 11</mat-hint>
-</mat-form-field>
-<mat-form-field class="input-form" appearance="fill">
-    <mat-label>Ваш адрес</mat-label>
-    <input matInput>
-</mat-form-field>
+</mat-form-field> -->
+<mat-form-field appearance="fill" class="input-form">
+    <mat-label>Улица</mat-label>
+    <mat-select [(ngModel)]="streetVal">
+      <mat-option *ngFor="let street of streets" [value]="street.viewValue" >
+        {{street.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+<mat-form-field appearance="fill" class="input-form">
+    <mat-label>Дом</mat-label>
+    <mat-select [(ngModel)]="houseVal">
+      <mat-option *ngFor="let house of houses" [value]="house.viewValue" >
+        {{house.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill"  class="input-form">
+    <mat-label>Квартира</mat-label>
+    <mat-select [(ngModel)]="apartmentVal">
+      <mat-option *ngFor="let flat of flats" [value]="flat.viewValue" >
+        {{flat.viewValue}}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Выберите дату</mat-label>
-    <input matInput [matDatepicker]="picker">
+    <input matInput [matDatepicker]="picker" [(ngModel)]="arrivalDate">
     <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
     <mat-datepicker #picker></mat-datepicker>
 </mat-form-field>
@@ -27,17 +47,17 @@
 </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Дата рождения</mat-label>
-    <input matInput [matDatepicker]="picker2">
+    <input matInput [matDatepicker]="picker2" [(ngModel)]="birthDate">
     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
     <mat-datepicker #picker2 startView="year" [startAt]="startDate"></mat-datepicker>
 </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Симптомы</mat-label>
-    <textarea matInput></textarea>
+    <textarea matInput [(ngModel)]="symptoms"></textarea>
 </mat-form-field>
 
-<mat-form-field class="input-form" appearance="fill">
+<!-- <mat-form-field class="input-form" appearance="fill">
     <mat-label>Комментарий врачу</mat-label>
-    <textarea matInput></textarea>
-</mat-form-field>
-<button mat-raised-button color="warn" class="input-form-bot">Вызвать врача</button>
+    <textarea matInput ></textarea>
+</mat-form-field> -->
+<button mat-raised-button color="warn" class="input-form-bot" (click)="onClickCall()">Вызвать врача</button>

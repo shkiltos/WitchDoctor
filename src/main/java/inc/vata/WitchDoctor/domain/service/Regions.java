@@ -1,5 +1,7 @@
 package inc.vata.WitchDoctor.domain.service;
 
+import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
+
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
@@ -57,5 +59,9 @@ public class Regions {
             }
         }
         return "Участок 1";
+    }
+
+    public static String getRegion(AppointmentModel appointmentModel) {
+        return getRegion(appointmentModel.getStreet(), appointmentModel.getHouse());
     }
 }
