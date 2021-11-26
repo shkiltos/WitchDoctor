@@ -27,6 +27,7 @@ import { MatDividerModule } from '@angular/material/divider';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 import { MatOptionModule } from '@angular/material/core';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
@@ -59,6 +60,8 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
     MatDividerModule,
     MatSlideToggleModule,
     MatOptionModule,
+    MatProgressSpinnerModule,
+    HttpClientModule,
     MatProgressSpinnerModule
   ],
   providers: [],
