@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class InitialFormComponent implements OnInit {
 
   constructor() { }
+  startDate = new Date(1990, 0, 1);
 
   ngOnInit(): void {
   }
