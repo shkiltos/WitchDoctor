@@ -44,4 +44,10 @@ public class AppointmentModel {
     @Nullable
     @Column(name = "region")
     private String region;
+
+    @Column(name = "lat")
+    private String lat;
+
+    @Column(name = "lng")
+    private String lng;
 }
