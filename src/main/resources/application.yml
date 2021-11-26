@@ -5,7 +5,10 @@ witchdoctor:
     bCryptRounds: 12
 spring:
   jpa:
-    hibernate.ddl-auto: "create-drop"
+    hibernate.ddl-auto: "update"
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
   datasource:
     url: jdbc:postgresql://localhost:5432/witchdoctor
     username: postgres
