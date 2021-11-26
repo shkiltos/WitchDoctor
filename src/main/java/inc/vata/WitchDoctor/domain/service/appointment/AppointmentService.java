@@ -9,6 +9,8 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
 public class AppointmentService {
@@ -16,6 +18,14 @@ public class AppointmentService {
     private final AppointmentRepository appointmentRepository;
 
     private final RoutingServiceImpl routingService;
+
+    public List<AppointmentModel> getAll() {
+        return this.appointmentRepository.findAll();
+    }
+
+    public List<AppointmentModel> gatAllForRegion(String doctorID) {
+        return this.appointmentRepository.findAll();
+    }
 
     public AppointmentModel createAppointment(AppointmentModel appointmentModel) {
         appointmentModel.setRegion(Regions.getRegion(appointmentModel));
