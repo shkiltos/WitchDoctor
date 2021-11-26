@@ -8,6 +8,9 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import springfox.documentation.annotations.ApiIgnore;
 
+import java.util.Collections;
+import java.util.Map;
+
 @RestController
 @RequestMapping(
         path = "${witchdoctor.api.prefix:}" + "/v1/users")
@@ -22,8 +25,8 @@ public class UsersController {
     }
 
     @GetMapping
-    public UserModel whoAmI(@ApiIgnore @AuthenticationPrincipal UserModelDetails userModel) {
-        return userModel.getUser();
+    public Map<String, String> whoAmI(@ApiIgnore @AuthenticationPrincipal UserModelDetails userModel) {
+        return Collections.singletonMap("role", userModel.getUser().getRole().getAuthority());
     }
 
 }
