@@ -1,5 +1,6 @@
 package inc.vata.WitchDoctor.data.appointment;
 
+import com.sun.istack.Nullable;
 import lombok.Data;
 
 import javax.persistence.Column;
@@ -19,8 +20,14 @@ public class AppointmentModel {
     @GeneratedValue
     private Integer id;
 
-    @Column(name = "address")
-    private String address;
+    @Column(name = "street")
+    private String street;
+
+    @Column(name = "house")
+    private String house;
+
+    @Column(name = "apartment")
+    private String apartment;
 
     @Column(name = "fullName")
     private String fullName;
@@ -33,4 +40,8 @@ public class AppointmentModel {
 
     @Column(name = "arrivalDate")
     private Date arrivalDate;
+
+    @Nullable
+    @Column(name = "region")
+    private String region;
 }
