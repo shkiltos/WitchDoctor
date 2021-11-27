@@ -13,6 +13,7 @@ import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 export class LoginComponent implements OnInit {
   form: FormGroup;
   public phoneInvalid = false;
+  public wrongPasswordOrPhone = false;
   private formSubmitAttempt = false;
 
   constructor(
@@ -35,32 +36,53 @@ export class LoginComponent implements OnInit {
   async onSubmit(): Promise<void> {
     this.phoneInvalid = false;
     this.formSubmitAttempt = false;
+    this.wrongPasswordOrPhone = false;
     if (this.form.valid) {
       try {
         const phone = this.form.get('phone')?.value;
         const password = this.form.get('password')?.value;
         const body = new HttpParams()
-        .set('username', phone)
-        .set('password', password);
+          .set('username', phone)
+          .set('password', password);
 
         let options = {
-            headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
+          headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         };
 
         this.http
-            .post('http://localhost:8080/login', body.toString(), options)
-            .subscribe(response => {
-                console.log(response);
+          .post('http://localhost:8080/login', body.toString(), options)
+          .subscribe(response => {
+            console.log(response);
+          },
+            error => {
+              console.log(error);
+              this.wrongPasswordOrPhone = true;
             });
-            this.router.navigate(['/start']);
+
+        const options2 = {
+          params: new HttpParams().set('phone', phone),
+          headers: new HttpHeaders().set('Content-Type', 'application/json')
+        };
+        this.http
+          .get('http://localhost:8080/api/v1/users/role', options2)
+          .subscribe(resp => {
+            console.log(resp);
+            if (resp == 'doc') {
+              this.router.navigate(['/doctorsMap']);
+            }
+            if (resp == 'patient') {
+              this.router.navigate(['/start']);
+            }
+          },
+            error => console.log(error));
 
       } catch (err) {
-        this.router.navigate(['/start']);
+        this.router.navigate(['/login']);
 
         this.phoneInvalid = true;
       }
     } else {
-      this.router.navigate(['/start']);
+      this.router.navigate(['/login']);
 
       this.formSubmitAttempt = true;
     }
