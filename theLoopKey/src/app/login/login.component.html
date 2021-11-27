@@ -11,10 +11,8 @@
                         Номер телефона или пароль введён неверно
                     </mat-error>
                     <mat-form-field class="full-width-input">
-                        <input matInput placeholder="Телефон" formControlName="phone" required>
-                        <mat-error>
-                            Пожалуйста введите корректный номер телефона
-                        </mat-error>
+                        <mat-label>Телефон</mat-label>
+                        <input type="tel" matInput placeholder="555-555-1234" placeholder="Телефон" formControlName="phone" required>
                     </mat-form-field>
                     <mat-form-field class="full-width-input">
                         <input matInput type="password" placeholder="Пароль" formControlName="password" required>

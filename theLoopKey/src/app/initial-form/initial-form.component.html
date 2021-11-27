@@ -12,7 +12,7 @@
 </mat-form-field> -->
 <mat-form-field appearance="fill" class="input-form">
     <mat-label>Улица</mat-label>
-    <mat-select [(ngModel)]="streetVal">
+    <mat-select [(ngModel)]="streetVal" (ngModelChange)="initHouses($event)">
         <mat-option *ngFor="let street of streets" [value]="street.viewValue">
             {{street.viewValue}}
         </mat-option>
@@ -28,7 +28,7 @@
 </mat-form-field>
 <mat-form-field appearance="fill" class="input-form">
     <mat-label>Квартира</mat-label>
-    <textarea matInput [(ngModel)]="apartmentVal"></textarea>
+    <input matInput [(ngModel)]="apartmentVal" />
 </mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Выберите дату</mat-label>

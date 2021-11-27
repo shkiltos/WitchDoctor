@@ -1,19 +1,20 @@
 /// <reference path="../../../node_modules/@types/google.maps/index.d.ts"/>
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Appointment {
-  lat: number;
 
-  lng: number;
-
-  fullName: string;
-
-  address: string;
-
-  symptoms: string;
-
-  arrivalDate: Date;
+  fullName: string
+  street: string,
+  house: string,
+  apartment: string,
+  birthDate: string,
+  symptoms: string,
+  arrivalDate: string,
+  region: string,
+  lat: string,
+  lng: string
 }
 
 @Component({
@@ -23,6 +24,7 @@ interface Appointment {
 })
 export class DoctorsMapPageComponent implements OnInit {
 
+  form: FormGroup;
   public origin: any;
 
   public destination: any;
@@ -32,14 +34,12 @@ export class DoctorsMapPageComponent implements OnInit {
   public appointments: Appointment[] = [];
 
   public currentPosition: any;
-  // public appointments = [
-  //   {fullName: 'Кауфманн Трофим Витальевич', address: 'ул. Диановых, д. 15, кв. 71', symptoms: 'Жёсткая диарея'},
-  //   {fullName: 'Шкилевич Антон Александрович', address: 'Деревня стрит, д. 1, кв. 1', symptoms: 'Дота головного мозга'},
-  //   {fullName: 'Ковшов Александр Андреевич', address: 'ул. Сакко, д. 37А, кв. 15', symptoms: 'Волосы рыжего цвета'},
-  //   {fullName: 'Орлов Владимир Александрович', address: 'Додо Пицца, д. Супер мясной, кв. 30см', symptoms: 'Хочу есть!'}
-  // ];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder,) {
+    this.form = this.fb.group({
+      region: ['', Validators.required]
+    });
+  }
 
   ngOnInit(): void {
     const options = {
@@ -52,7 +52,7 @@ export class DoctorsMapPageComponent implements OnInit {
         this.initMap();
       });
     });
-    
+
   }
 
   private async getCurrentPosition() {
@@ -71,9 +71,9 @@ export class DoctorsMapPageComponent implements OnInit {
         center: { lat: 41.85, lng: -87.65 },
       }
     );
-  
+
     directionsRenderer.setMap(map);
-  
+
     (document.getElementById("submit") as HTMLElement).addEventListener(
       "click",
       () => {
@@ -81,7 +81,7 @@ export class DoctorsMapPageComponent implements OnInit {
       }
     );
   }
-  
+
   private calculateAndDisplayRoute(
     directionsService: google.maps.DirectionsService,
     directionsRenderer: google.maps.DirectionsRenderer
@@ -90,14 +90,14 @@ export class DoctorsMapPageComponent implements OnInit {
     const checkboxArray = document.getElementById(
       "waypoints"
     ) as HTMLSelectElement;
-  
+
     for (let i = 0; i < this.appointments.length - 1; i++) {
       waypts.push({
         location: new google.maps.LatLng(this.appointments[i].lat, this.appointments[i].lng),
         stopover: true,
       });
     }
-  
+
     let destinationPos = new google.maps.LatLng(this.appointments[this.appointments.length-1].lat, this.appointments[this.appointments.length-1].lng);
 
     directionsService
@@ -110,18 +110,18 @@ export class DoctorsMapPageComponent implements OnInit {
       })
       .then((response) => {
         directionsRenderer.setDirections(response);
-  
+
         const route = response.routes[0];
         const summaryPanel = document.getElementById(
           "directions-panel"
         ) as HTMLElement;
-  
+
         summaryPanel.innerHTML = "";
-  
+
         // For each route, display summary information.
         for (let i = 0; i < route.legs.length; i++) {
           const routeSegment = i + 1;
-  
+
           // summaryPanel.innerHTML +=
           //   "<b>Route Segment: " + routeSegment + "</b><br>";
           // summaryPanel.innerHTML += route.legs[i].start_address + " to ";
@@ -133,5 +133,34 @@ export class DoctorsMapPageComponent implements OnInit {
         // window.alert("Directions request failed due to " + status)
         console.log("Directions request failed due to " + status);
       });
+  }
+
+
+  async onSubmit(): Promise<void> {
+    if (this.form.valid) {
+      try {
+        const region = this.form.get('region')?.value;
+
+        const options = {
+          headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+          params: new HttpParams().set('region', region)
+        };
+
+        this.http
+          .get<Appointment[]>('http://localhost:8080/api/v1/allAppointments', options)
+          .subscribe(response => {
+            this.appointments = response.map(appointment => {
+              return {fullName: appointment.fullName,
+                      address: appointment.street + ', ' + appointment.house + ', ' + appointment.apartment,
+                      symptoms: appointment.symptoms}
+            })
+          },
+            error => {
+              console.log(error);
+            });
+      } catch (err) {
+        console.log(err);
+      }
+    }
   }
 }
