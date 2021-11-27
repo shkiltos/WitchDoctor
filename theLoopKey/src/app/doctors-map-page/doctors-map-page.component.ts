@@ -1,5 +1,5 @@
 /// <reference path="../../../node_modules/@types/google.maps/index.d.ts"/>
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 interface Appointment {
@@ -21,6 +21,8 @@ interface Appointment {
 })
 export class DoctorsMapPageComponent implements OnInit {
 
+  public testMode = true;
+
   public appointments1: Appointment[] = [];
   public appointments = [
     {fullName: 'Кауфманн Трофим Витальевич', address: 'ул. Диановых, д. 15, кв. 71', symptoms: 'Жёсткая диарея'},
@@ -32,7 +34,10 @@ export class DoctorsMapPageComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    this.http.get<Appointment[]>('appointments').subscribe(data => {
+    const options = {
+      params: new HttpParams().set('region', 'Участок17')
+    };
+    this.http.get<Appointment[]>('/api/v1/allAppointments', options).subscribe(data => {
       this.appointments1 = data;
     });
     this.initMap();

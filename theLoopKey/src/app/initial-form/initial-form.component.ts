@@ -99,14 +99,13 @@ export class InitialFormComponent implements OnInit {
         body.set('apartment', this.apartmentVal);
         body.set('symptoms', this.symptoms);
         body.set('arrivalDate', this.arrivalDate);
-        body.set('forChild', this.forChild.toString());
 
         // let options = {
         //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
         // };
 
         this.http
-            .post('localhost:8080/api/v1/appointment', body.toString())
+            .post('/api/v1/appointment', body)
             .subscribe(response => {
                 console.log(response);
             });

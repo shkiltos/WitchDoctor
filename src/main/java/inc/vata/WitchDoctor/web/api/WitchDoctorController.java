@@ -9,17 +9,14 @@ import inc.vata.WitchDoctor.domain.service.witch_doctor.WitchDoctorService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
 
 @RestController
 @RequestMapping(
-        path = "${witchdoctor.api.prefix:}" + "/v1/",
+        path = "${witchdoctor.api.prefix:}" + "/v1",
         produces = MediaType.APPLICATION_JSON_VALUE
 )
 @RequiredArgsConstructor(onConstructor_ = {@Autowired})
@@ -29,8 +26,8 @@ public class WitchDoctorController {
 
     private final GeoService geoService;
 
-    @GetMapping
-    public List<AppointmentModel> getAppointments(String region) {
+    @GetMapping(path="/allAppointments")
+    public List<AppointmentModel> getAppointments(@RequestParam String region) {
         return this.witchDoctorService.getAppointmentModels(region);
     }
 
