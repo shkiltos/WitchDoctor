@@ -4,6 +4,7 @@ import inc.vata.WitchDoctor.data.appointment.AppointmentModel;
 import inc.vata.WitchDoctor.data.appointment.AppointmentRepository;
 import inc.vata.WitchDoctor.domain.service.appointment.AppointmentService;
 import inc.vata.WitchDoctor.domain.service.witch_doctor.WitchDoctorService;
+import io.swagger.models.auth.In;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -60,5 +61,12 @@ public class AppointmentController {
         result.put("lat", appointmentModel.getDocLat());
         result.put("lng", appointmentModel.getDocLng());
         return result;
+    }
+
+    @GetMapping("appointmentDone")
+    public void finishAppointment(@RequestParam Integer id) {
+        AppointmentModel appointmentModel = this.appointmentRepository.findById(id).get();
+        appointmentModel.setDone(true);
+        this.appointmentRepository.save(appointmentModel);
     }
 }

@@ -20,6 +20,7 @@ public class WitchDoctorService {
 
         List<AppointmentModel> appointmentModels = this.appointmentRepository.findAll();
         return appointmentModels.stream()
+                .filter(appointmentModel -> !appointmentModel.getDone())
                 .filter(appointmentModel -> appointmentModel.getRegion().equals(region))
                 .filter(appointmentModel -> {
                     Date today = new Date();

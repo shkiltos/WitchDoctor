@@ -1,28 +1,30 @@
 <div class="container">
     <div class="element">
-        
-        <input type="submit" id="submit" />
-        <mat-grid-list cols="2" rowHeight="100px">
-            <mat-grid-tile class="map-container" [colspan]="2" [rowspan]="1">
-                <form [formGroup]="form" (ngSubmit)="onSubmit()">
-                    <mat-form-field class="full-width-input">
-                        <mat-label>Участок</mat-label>
-                        <input matInput placeholder="Участок" formControlName="region" required>
-                    </mat-form-field>
-                    <button mat-raised-button color="primary">Получить список вызовов</button>
-                </form>
 
-                <!-- <mat-card-header class="succ-container">
-                    <mat-card-title color class="wht">Путь до шизоида</mat-card-title>
-                  </mat-card-header > -->
+        <mat-grid-list cols="3" rowHeight="100px">
+            <mat-grid-tile class="region-input" [colspan]="1" [rowspan]="1">
+                <mat-form-field class="full-width-input">
+                    <mat-label>Участок</mat-label>
+                    <input matInput placeholder="Участок" (input)="getAppointments($event.target)" required>
+                </mat-form-field>
             </mat-grid-tile>
 
-            <mat-grid-tile class="map-container" [colspan]="2" [rowspan]="7">
+            <mat-grid-tile class="map-container" [colspan]="1" [rowspan]="1">
+                <button mat-mini-fab color="primary" aria-label="Обновить" id="refresh">
+                    <mat-icon>refresh</mat-icon>
+                </button>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="next-button" [colspan]="1" [rowspan]="1">
+                <button mat-raised-button color="primary">Следующий пациент </button>
+            </mat-grid-tile>
+
+            <mat-grid-tile class="map-container" [colspan]="3" [rowspan]="7">
 
                 <div id="map"></div>
 
             </mat-grid-tile>
-            <mat-grid-tile class="appointments" [colspan]="2" [rowspan]="8">
+            <mat-grid-tile class="appointments" [colspan]="3" [rowspan]="8">
                 <mat-list>
                     <h2 mat-subheader class="wht">Обходной лист</h2>
                     <mat-list-item *ngFor="let appointment of appointments; last as last">
@@ -32,6 +34,9 @@
                             <mat-card-content>
                                 <p>{{appointment.symptoms}}</p>
                             </mat-card-content>
+                            <button mat-mini-fab color="primary" aria-label="Обновить" id="done" (click)="finishAppointment(appointment.id)">
+                                <mat-icon>done</mat-icon>
+                            </button>
                         </mat-card>
                         <mat-divider></mat-divider>
                     </mat-list-item>

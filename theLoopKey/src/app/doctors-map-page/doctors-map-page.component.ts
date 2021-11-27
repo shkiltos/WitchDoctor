@@ -1,10 +1,10 @@
 /// <reference path="../../../node_modules/@types/google.maps/index.d.ts"/>
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 interface Appointment {
 
+  id: string,
   fullName: string
   street: string,
   house: string,
@@ -25,7 +25,6 @@ interface Appointment {
 })
 export class DoctorsMapPageComponent implements OnInit {
 
-  form: FormGroup;
   public origin: any;
 
   public destination: any;
@@ -36,10 +35,7 @@ export class DoctorsMapPageComponent implements OnInit {
 
   public currentPosition: any;
 
-  constructor(private http: HttpClient, private fb: FormBuilder,) {
-    this.form = this.fb.group({
-      region: ['', Validators.required]
-    });
+  constructor(private http: HttpClient) {
   }
 
   ngOnInit(): void {
@@ -75,7 +71,7 @@ export class DoctorsMapPageComponent implements OnInit {
 
     directionsRenderer.setMap(map);
 
-    (document.getElementById("submit") as HTMLElement).addEventListener(
+    (document.getElementById("refresh") as HTMLElement).addEventListener(
       "click",
       () => {
         this.calculateAndDisplayRoute(directionsService, directionsRenderer);
@@ -136,27 +132,34 @@ export class DoctorsMapPageComponent implements OnInit {
   }
 
 
-  async onSubmit(): Promise<void> {
-    if (this.form.valid) {
-      try {
-        const region = this.form.get('region')?.value;
+  public getAppointments(event: any) {
+    console.log(event);
+    
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      params: new HttpParams().set('region', event.value)
+    };
 
-        const options = {
-          headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
-          params: new HttpParams().set('region', region)
-        };
+    this.http
+      .get<Appointment[]>('/api/v1/allAppointments', options)
+      .subscribe(response => {
+        this.appointments = response;
+      });
+  }
 
-        this.http
-          .get<Appointment[]>('http://localhost:8080/api/v1/allAppointments', options)
-          .subscribe(response => {
-            this.appointments = response;
-          },
-            error => {
-              console.log(error);
-            });
-      } catch (err) {
-        console.log(err);
-      }
-    }
+  public finishAppointment(id: string) {
+    console.log(id);
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      params: new HttpParams().set('id', id)
+    };
+
+    this.appointments = this.appointments.filter(appointment => appointment.id != id);
+
+    this.http
+      .get('/api/v1/appointment/appointmentDone', options)
+      .subscribe(response => {
+        console.log(response);
+      });
   }
 }
