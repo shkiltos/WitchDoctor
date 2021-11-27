@@ -13,7 +13,6 @@ interface Appointment {
   symptoms: string,
   arrivalDate: string,
   region: string,
-  address: string,
   lat: number,
   lng: number
 }
@@ -49,7 +48,26 @@ export class DoctorsMapPageComponent implements OnInit {
         this.initMap();
       });
     });
+    var theRunner = setInterval(() => {
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.setDoctorPosition(position.coords.latitude, position.coords.longitude);
+      });
+      }, (1000 * 10));
 
+  }
+
+  private setDoctorPosition(lat: number, lng: number) {
+
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      params: new HttpParams().set('region', 'Участок 17').set('lat', lat).set('lng', lng)
+    };
+
+    this.http
+      .get('http://localhost:8080/api/v1/appointment/setGeo', options)
+      .subscribe(response => {
+          console.log(response);
+      });
   }
 
   private async getCurrentPosition() {
@@ -84,9 +102,6 @@ export class DoctorsMapPageComponent implements OnInit {
     directionsRenderer: google.maps.DirectionsRenderer
   ) {
     const waypts: google.maps.DirectionsWaypoint[] = [];
-    const checkboxArray = document.getElementById(
-      "waypoints"
-    ) as HTMLSelectElement;
 
     for (let i = 0; i < this.appointments.length; i++) {
       waypts.push({
@@ -134,7 +149,7 @@ export class DoctorsMapPageComponent implements OnInit {
 
   public getAppointments(event: any) {
     console.log(event);
-    
+
     const options = {
       headers: new HttpHeaders().set('Content-Type', 'application/json'),
       params: new HttpParams().set('region', event.value)
@@ -161,5 +176,10 @@ export class DoctorsMapPageComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
       });
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+
+    this.calculateAndDisplayRoute(directionsService, directionsRenderer);
   }
 }

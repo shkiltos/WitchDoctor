@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class InitialFormComponent implements OnInit {
 
-  constructor(    
+  constructor(
     private http: HttpClient,
     private router: Router,
 
@@ -221,11 +221,13 @@ export class InitialFormComponent implements OnInit {
             .subscribe(response => {
                 console.log(response);
                 localStorage.setItem('id', response.id.toString());
+
+                console.log('your appointment id = ' + localStorage.getItem('id'));
             });
         // this.router.navigate(['/requestReqult']);
 
       } catch (err) {
       }
-    
+
   }
 }
