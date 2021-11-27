@@ -1,17 +1,12 @@
 package inc.vata.WitchDoctor.data.roles;
 
-import org.springframework.security.core.GrantedAuthority;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 
 @Entity
 @Table(name = "roles", schema = "public")
-public class RoleModel implements GrantedAuthority {
+public class RoleModel
+//        implements GrantedAuthority
+{
 
     @Id
     @Column(name = "id")
@@ -21,7 +16,7 @@ public class RoleModel implements GrantedAuthority {
     @Column(name = "name")
     private String name;
 
-    @Override
+//    @Override
     public String getAuthority() {
         return this.name;
     }
