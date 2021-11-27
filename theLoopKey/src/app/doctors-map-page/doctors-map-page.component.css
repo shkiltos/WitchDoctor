@@ -83,6 +83,9 @@ mat-list h2 {
     margin-top: 10px;
 }
 
+mat-form-field {
+    width: 100%;
+    }
 .next-button {
-    margin-left: 90px;
+    margin-left: 10px;
 }

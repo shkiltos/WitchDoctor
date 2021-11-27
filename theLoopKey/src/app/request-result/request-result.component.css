@@ -7,6 +7,7 @@
     margin: 0 3%;
     display: flex;
     align-items: center;
+    justify-content: center;
     height: 100vh;
 }
 .text-container {
@@ -17,11 +18,20 @@
 .succ-container {
     margin-top: 10px;
     justify-content: center;
+    font-size: 22px;
 
 }
 
 mat-card:not([class*=mat-elevation-z]){
     box-shadow: none !important;
+
+}
+mat-card-header mat-card-title{
+    font-size: 24px;
+}
+
+mat-card-content>:last-child:not(.mat-card-footer) {
+    font-size: 20px;
 
 }
 
