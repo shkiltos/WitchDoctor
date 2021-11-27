@@ -33,6 +33,8 @@ public class AppointmentService {
                 "г. Иваново, " + appointmentModel.getStreet() + ", " + appointmentModel.getHouse());
         appointmentModel.setLat(location.get("lat").toString());
         appointmentModel.setLng(location.get("lng").toString());
+        appointmentModel.setDocLat(location.get("lng").toString());
+        appointmentModel.setDocLng(location.get("lng").toString());
         return this.appointmentRepository.save(appointmentModel);
     }
 }
