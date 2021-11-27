@@ -50,32 +50,20 @@ export class LoginComponent implements OnInit {
         };
 
         this.http
-          .post('http://localhost:8080/login', body.toString(), options)
+          .post<{role: {authority: string}}>('http://localhost:8080/api/v1/users/login', body.toString(), options)
           .subscribe(response => {
             console.log(response);
+            if (response.role.authority == 'doc') {
+              this.router.navigate(['/doctorsMap']);
+            }
+            if (response.role.authority == 'patient') {
+              this.router.navigate(['/start']);
+            }
           },
             error => {
               console.log(error);
               this.wrongPasswordOrPhone = true;
             });
-
-        const options2 = {
-          params: new HttpParams().set('phone', phone),
-          headers: new HttpHeaders().set('Content-Type', 'application/json')
-        };
-        this.http
-          .get('http://localhost:8080/api/v1/users/role', options2)
-          .subscribe(resp => {
-            console.log(resp);
-            if (resp == 'doc') {
-              this.router.navigate(['/doctorsMap']);
-            }
-            if (resp == 'patient') {
-              this.router.navigate(['/start']);
-            }
-          },
-            error => console.log(error));
-
       } catch (err) {
         this.router.navigate(['/login']);
 

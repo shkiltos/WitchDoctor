@@ -89,7 +89,7 @@ export class InitialFormComponent implements OnInit {
           "apartment": this.apartmentVal,
           "symptoms": this.symptoms,
           "arrivalDate": this.arrivalDate,
-          "forChild": this.forChild
+          // "forChild": this.forChild
         };
         let body = new URLSearchParams();
         body.set('fullName', this.fullName);
