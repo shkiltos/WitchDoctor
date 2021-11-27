@@ -217,9 +217,12 @@ export class InitialFormComponent implements OnInit {
         };
 
         this.http
-            .post('/api/v1/appointment', body, options)
+            .post<{id: number}>('/api/v1/appointment', body, options)
             .subscribe(response => {
                 console.log(response);
+                localStorage.setItem('id', response.id.toString());
+
+                console.log(localStorage.getItem('id'));
             });
         // this.router.navigate(['/requestReqult']);
 

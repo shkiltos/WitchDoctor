@@ -52,4 +52,12 @@ public class AppointmentModel {
     @Nullable
     @Column(name = "lng")
     private String lng;
+
+    @Nullable
+    @Column(name = "doc_lat")
+    private String docLat;
+
+    @Nullable
+    @Column(name = "doc_lng")
+    private String docLng;
 }
