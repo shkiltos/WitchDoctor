@@ -13,8 +13,9 @@ interface Appointment {
   symptoms: string,
   arrivalDate: string,
   region: string,
-  lat: string,
-  lng: string
+  address: string,
+  lat: number,
+  lng: number
 }
 
 @Component({
@@ -91,24 +92,23 @@ export class DoctorsMapPageComponent implements OnInit {
       "waypoints"
     ) as HTMLSelectElement;
 
-    for (let i = 0; i < this.appointments.length - 1; i++) {
+    for (let i = 0; i < this.appointments.length; i++) {
       waypts.push({
         location: new google.maps.LatLng(this.appointments[i].lat, this.appointments[i].lng),
         stopover: true,
       });
     }
 
-    let destinationPos = new google.maps.LatLng(this.appointments[this.appointments.length-1].lat, this.appointments[this.appointments.length-1].lng);
-
     directionsService
       .route({
         origin: this.currentPosition,
-        destination:  destinationPos,
+        destination:  this.currentPosition,
         waypoints: waypts,
         optimizeWaypoints: true,
         travelMode: google.maps.TravelMode.WALKING,
       })
       .then((response) => {
+        response.routes[0].legs.pop();
         directionsRenderer.setDirections(response);
 
         const route = response.routes[0];
@@ -149,11 +149,7 @@ export class DoctorsMapPageComponent implements OnInit {
         this.http
           .get<Appointment[]>('http://localhost:8080/api/v1/allAppointments', options)
           .subscribe(response => {
-            this.appointments = response.map(appointment => {
-              return {fullName: appointment.fullName,
-                      address: appointment.street + ', ' + appointment.house + ', ' + appointment.apartment,
-                      symptoms: appointment.symptoms}
-            })
+            this.appointments = response;
           },
             error => {
               console.log(error);
