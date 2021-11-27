@@ -30,13 +30,15 @@
                     <mat-list-item *ngFor="let appointment of appointments; last as last">
                         <mat-card class="example-card">
                             <mat-card-title>{{appointment.fullName}}</mat-card-title>
-                            <mat-card-subtitle>{{appointment.address}}</mat-card-subtitle>
+                            <mat-card-subtitle>{{appointment.street}}, д. {{appointment.house}}, кв. {{appointment.apartment}}</mat-card-subtitle>
                             <mat-card-content>
                                 <p>{{appointment.symptoms}}</p>
                             </mat-card-content>
-                            <button mat-mini-fab color="primary" aria-label="Обновить" id="done" (click)="finishAppointment(appointment.id)">
-                                <mat-icon>done</mat-icon>
-                            </button>
+                            <div class="done-button-container">
+                                <button mat-mini-fab color="primary" aria-label="Обновить" id="done" (click)="finishAppointment(appointment.id)">
+                                    <mat-icon>done</mat-icon>
+                                </button>
+                            </div>
                         </mat-card>
                         <mat-divider></mat-divider>
                     </mat-list-item>

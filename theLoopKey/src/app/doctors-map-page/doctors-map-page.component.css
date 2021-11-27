@@ -58,6 +58,10 @@ mat-list h2 {
     display: flex;
 }
 
+.done-button-container {
+    text-align: right;
+}
+
 
 /* #sidebar {
     flex-basis: 15rem;

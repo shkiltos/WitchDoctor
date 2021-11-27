@@ -13,7 +13,6 @@ interface Appointment {
   symptoms: string,
   arrivalDate: string,
   region: string,
-  address: string,
   lat: number,
   lng: number
 }
