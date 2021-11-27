@@ -63,5 +63,5 @@ public class AppointmentModel {
 
     @Nullable
     @Column(name = "done")
-    private Boolean done;
+    private Boolean done = false;
 }

@@ -30,7 +30,7 @@ public class AppointmentService {
     public AppointmentModel createAppointment(AppointmentModel appointmentModel) {
         appointmentModel.setRegion(Regions.getRegion(appointmentModel));
         JSONObject location = this.routingService.geocodeAddress(
-                "г. Иваново, " + appointmentModel.getStreet() + ", " + appointmentModel.getHouse());
+                "ул. " + appointmentModel.getStreet() + ", д. " + appointmentModel.getHouse());
         appointmentModel.setLat(location.get("lat").toString());
         appointmentModel.setLng(location.get("lng").toString());
         appointmentModel.setDocLat(location.get("lng").toString());

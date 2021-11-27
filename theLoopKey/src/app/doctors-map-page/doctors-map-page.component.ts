@@ -41,7 +41,7 @@ export class DoctorsMapPageComponent implements OnInit {
     const options = {
       params: new HttpParams().set('region', 'Участок 17')
     };
-    this.http.get<Appointment[]>('/api/v1/allAppointments', options).subscribe(data => {
+    this.http.get<Appointment[]>('http://localhost:8080/api/v1/allAppointments', options).subscribe(data => {
       this.appointments = data;
       navigator.geolocation.getCurrentPosition((position) => {
         this.currentPosition = new google.maps.LatLng(position.coords.latitude, position.coords.longitude);
@@ -156,7 +156,7 @@ export class DoctorsMapPageComponent implements OnInit {
     };
 
     this.http
-      .get<Appointment[]>('/api/v1/allAppointments', options)
+      .get<Appointment[]>('http://localhost:8080/api/v1/allAppointments', options)
       .subscribe(response => {
         this.appointments = response;
       });
