@@ -161,5 +161,10 @@ export class DoctorsMapPageComponent implements OnInit {
       .subscribe(response => {
         console.log(response);
       });
+
+    const directionsService = new google.maps.DirectionsService();
+    const directionsRenderer = new google.maps.DirectionsRenderer();
+
+    this.calculateAndDisplayRoute(directionsService, directionsRenderer);
   }
 }
