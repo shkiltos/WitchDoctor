@@ -48,7 +48,7 @@ public class AppointmentController {
         appointmentModels
             .forEach(appointmentModel -> {
                 appointmentModel.setDocLat(lat);
-                appointmentModel.setDocLat(lng);
+                appointmentModel.setDocLng(lng);
                 this.appointmentRepository.save(appointmentModel);
             });
 
