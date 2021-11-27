@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -91,25 +91,27 @@ export class InitialFormComponent implements OnInit {
           "arrivalDate": this.arrivalDate,
           // "forChild": this.forChild
         };
-        let body = new URLSearchParams();
-        body.set('fullName', this.fullName);
-        body.set('birthDate', this.birthDate);
-        body.set('street', this.streetVal);
-        body.set('house', this.houseVal);
-        body.set('apartment', this.apartmentVal);
-        body.set('symptoms', this.symptoms);
-        body.set('arrivalDate', this.arrivalDate);
 
-        // let options = {
-        //     headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded')
-        // };
+        const body = {
+          fullName: this.fullName,
+          birthDate: this.birthDate.toString(),
+          street: this.streetVal,
+          house: this.houseVal,
+          apartment: this.apartmentVal,
+          symptoms: this.symptoms,
+          arrivalDate: this.arrivalDate
+        }
+
+        let options = {
+            headers: new HttpHeaders().set('Content-Type', 'application/json')
+        };
 
         this.http
-            .post('/api/v1/appointment', body)
+            .post('/api/v1/appointment', body, options)
             .subscribe(response => {
                 console.log(response);
             });
-        this.router.navigate(['/requestReqult']);
+        // this.router.navigate(['/requestReqult']);
 
       } catch (err) {
       }
