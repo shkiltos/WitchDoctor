@@ -63,6 +63,9 @@ export class MapTimerCustomerComponent implements OnInit {
           if (response.lat && response.lng) {
             this.origin = new google.maps.LatLng(response.lat, response.lng);
             this.destination = this.currentPosition;
+            const directionsService = new google.maps.DirectionsService();
+            const directionsRenderer = new google.maps.DirectionsRenderer();
+            this.calculateAndDisplayRoute(directionsService, directionsRenderer);
           }
       });
   }
