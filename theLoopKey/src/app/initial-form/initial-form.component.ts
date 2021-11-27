@@ -222,7 +222,7 @@ export class InitialFormComponent implements OnInit {
                 console.log(response);
                 localStorage.setItem('id', response.id.toString());
 
-                console.log(localStorage.getItem('id'));
+                console.log('your appointment id = ' + localStorage.getItem('id'));
             });
         // this.router.navigate(['/requestReqult']);
 

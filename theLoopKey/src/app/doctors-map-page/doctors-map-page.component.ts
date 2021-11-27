@@ -108,9 +108,6 @@ export class DoctorsMapPageComponent implements OnInit {
     directionsRenderer: google.maps.DirectionsRenderer
   ) {
     const waypts: google.maps.DirectionsWaypoint[] = [];
-    const checkboxArray = document.getElementById(
-      "waypoints"
-    ) as HTMLSelectElement;
 
     for (let i = 0; i < this.appointments.length; i++) {
       waypts.push({
