@@ -31,8 +31,8 @@ public class AppointmentService {
         appointmentModel.setRegion(Regions.getRegion(appointmentModel));
         JSONObject location = this.routingService.geocodeAddress(
                 "г. Иваново, " + appointmentModel.getStreet() + ", " + appointmentModel.getHouse());
-        appointmentModel.setLat(location.getString("lat"));
-        appointmentModel.setLng(location.getString("lng"));
+        appointmentModel.setLat(location.get("lat").toString());
+        appointmentModel.setLng(location.get("lng").toString());
         return this.appointmentRepository.save(appointmentModel);
     }
 }

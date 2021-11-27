@@ -1,7 +1,7 @@
 <mat-card-header class="succ-container">
     <mat-card-title color>Для вызова врача на дом заполните форму:</mat-card-title>
-  </mat-card-header >
-<mat-form-field class="input-form-top" appearance="fill" >
+</mat-card-header>
+<mat-form-field class="input-form-top" appearance="fill">
     <mat-label>ФИО</mat-label>
     <input matInput [(ngModel)]="fullName">
 </mat-form-field>
@@ -13,27 +13,23 @@
 <mat-form-field appearance="fill" class="input-form">
     <mat-label>Улица</mat-label>
     <mat-select [(ngModel)]="streetVal">
-      <mat-option *ngFor="let street of streets" [value]="street.viewValue" >
-        {{street.viewValue}}
-      </mat-option>
+        <mat-option *ngFor="let street of streets" [value]="street.viewValue">
+            {{street.viewValue}}
+        </mat-option>
     </mat-select>
-  </mat-form-field>
+</mat-form-field>
 <mat-form-field appearance="fill" class="input-form">
     <mat-label>Дом</mat-label>
     <mat-select [(ngModel)]="houseVal">
-      <mat-option *ngFor="let house of houses" [value]="house.viewValue" >
-        {{house.viewValue}}
-      </mat-option>
+        <mat-option *ngFor="let house of houses" [value]="house.viewValue">
+            {{house.viewValue}}
+        </mat-option>
     </mat-select>
-  </mat-form-field>
-  <mat-form-field appearance="fill"  class="input-form">
+</mat-form-field>
+<mat-form-field appearance="fill" class="input-form">
     <mat-label>Квартира</mat-label>
-    <mat-select [(ngModel)]="apartmentVal">
-      <mat-option *ngFor="let flat of flats" [value]="flat.viewValue" >
-        {{flat.viewValue}}
-      </mat-option>
-    </mat-select>
-  </mat-form-field>
+    <textarea matInput [(ngModel)]="apartmentVal"></textarea>
+</mat-form-field>
 <mat-form-field class="input-form" appearance="fill">
     <mat-label>Выберите дату</mat-label>
     <input matInput [matDatepicker]="picker" [(ngModel)]="arrivalDate">

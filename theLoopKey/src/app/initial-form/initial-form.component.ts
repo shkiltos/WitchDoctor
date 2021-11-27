@@ -38,22 +38,24 @@ export class InitialFormComponent implements OnInit {
 
 
   streets: any[] = [
-    {viewValue: 'Gromoboyyya'},
-    {viewValue: 'Ssaki'},
-    {viewValue: 'Rainbownaya'},
+    {viewValue: '1-й Бульварный проезд'},
+    {viewValue: '2-й Бульварный проезд'},
+    {viewValue: 'Большая улица'},
+    {viewValue: 'Бульвар Оптимистов проезд'},
+    {viewValue: 'Зелёная улица'},
+    {viewValue: 'Касимовское шоссе'},
+    {viewValue: 'Тимакова улица'},
+    {viewValue: 'Советской Армии улица'},
+    {viewValue: 'Васильевская улица'},
+    {viewValue: 'Новосёлов улица'}
   ];
 
   houses: any[] = [
     {viewValue: '1'},
     {viewValue: '2'},
-    {viewValue: '44'},
+    {viewValue: '3'},
   ];
 
-  flats: any[] = [
-    {viewValue: '54'},
-    {viewValue: '32'},
-    {viewValue: '23'},
-  ];
   callData: any = {
   };
 
