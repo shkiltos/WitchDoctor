@@ -39,7 +39,7 @@ public class AppointmentController {
     }
 
     @PostMapping("setGeo")
-    public HttpStatus updateRecord(
+    public void updateRecord(
             @RequestParam String region,
             @RequestParam String lat,
             @RequestParam String lng) {
@@ -51,8 +51,6 @@ public class AppointmentController {
                 appointmentModel.setDocLng(lng);
                 this.appointmentRepository.save(appointmentModel);
             });
-
-        return HttpStatus.OK;
     }
 
     @GetMapping("getGeo")
