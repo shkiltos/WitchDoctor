@@ -11,18 +11,18 @@ export class MapTimerCustomerComponent implements OnInit {
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
-    var theRunner = setInterval(() => { this.getDoctorPosition();}, (1000 * 60)); 
+    var theRunner = setInterval(() => { this.getDoctorPosition();}, (1000 * 5)); 
   }
 
   private getDoctorPosition() {
 
     const options = {
-      headers: new HttpHeaders().set('Content-Type', 'application/x-www-form-urlencoded'),
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
       params: new HttpParams().set('id', localStorage.getItem('id')!)
     };
 
     this.http
-      .get('http://localhost:8080/api/v1/appointment/getGet', options)
+      .get('http://localhost:8080/api/v1/appointment/getGeo', options)
       .subscribe(response => {
           console.log(response);
       });

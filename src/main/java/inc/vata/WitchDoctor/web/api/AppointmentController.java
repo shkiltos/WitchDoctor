@@ -38,7 +38,7 @@ public class AppointmentController {
         return this.appointmentService.createAppointment(appointmentModel);
     }
 
-    @PatchMapping("setGeo")
+    @PostMapping("setGeo")
     public HttpStatus updateRecord(
             @RequestParam String region,
             @RequestParam String lat,
@@ -55,7 +55,7 @@ public class AppointmentController {
         return HttpStatus.OK;
     }
 
-    @GetMapping("getGet")
+    @GetMapping("getGeo")
     public Map<String, String> getGeo(@RequestParam Integer id) {
         AppointmentModel appointmentModel = this.appointmentRepository.findById(id).get();
         Map<String, String> result = new HashMap<>();
