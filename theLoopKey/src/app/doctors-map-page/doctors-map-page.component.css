@@ -49,10 +49,15 @@ mat-list h2 {
     padding-top: 15px;
 }
 
+.region-input {
+    margin-right: 15px;
+}
+
 #container {
     height: 100%;
     display: flex;
 }
+
 
 /* #sidebar {
     flex-basis: 15rem;
@@ -63,9 +68,11 @@ mat-list h2 {
     box-sizing: border-box;
     overflow: auto;
 } */
-.wht{
+
+.wht {
     color: whitesmoke;
 }
+
 #map {
     flex-basis: 0;
     flex-grow: 4;
@@ -74,4 +81,8 @@ mat-list h2 {
 
 #directions-panel {
     margin-top: 10px;
+}
+
+.next-button {
+    margin-left: 90px;
 }

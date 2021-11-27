@@ -60,4 +60,8 @@ public class AppointmentModel {
     @Nullable
     @Column(name = "doc_lng")
     private String docLng;
+
+    @Nullable
+    @Column(name = "done")
+    private Boolean done;
 }

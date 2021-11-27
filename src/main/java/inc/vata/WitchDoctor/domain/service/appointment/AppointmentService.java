@@ -35,6 +35,7 @@ public class AppointmentService {
         appointmentModel.setLng(location.get("lng").toString());
         appointmentModel.setDocLat(location.get("lng").toString());
         appointmentModel.setDocLng(location.get("lng").toString());
+        appointmentModel.setDone(false);
         return this.appointmentRepository.save(appointmentModel);
     }
 }

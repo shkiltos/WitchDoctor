@@ -9,7 +9,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class InitialFormComponent implements OnInit {
 
-  constructor(    
+  constructor(
     private http: HttpClient,
     private router: Router,
 
@@ -228,6 +228,6 @@ export class InitialFormComponent implements OnInit {
 
       } catch (err) {
       }
-    
+
   }
 }
