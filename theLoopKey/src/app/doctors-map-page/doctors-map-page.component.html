@@ -36,14 +36,21 @@
         </div>
         <mat-grid-list cols="2" rowHeight="100px">
             <mat-grid-tile class="map-container" [colspan]="2" [rowspan]="1">
-          
-                <mat-card-header class="succ-container">
+                <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                    <mat-form-field class="full-width-input">
+                        <mat-label>Участок</mat-label>
+                        <input matInput placeholder="Участок" formControlName="region" required>
+                    </mat-form-field>
+                    <button mat-raised-button color="primary">Получить список вызовов</button>
+                </form>
+
+                <!-- <mat-card-header class="succ-container">
                     <mat-card-title color class="wht">Путь до шизоида</mat-card-title>
-                  </mat-card-header >
+                  </mat-card-header > -->
             </mat-grid-tile>
 
             <mat-grid-tile class="map-container" [colspan]="2" [rowspan]="7">
-          
+
                 <div id="map"></div>
 
             </mat-grid-tile>
