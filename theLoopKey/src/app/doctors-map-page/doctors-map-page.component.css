@@ -12,7 +12,7 @@
 
 .element {
     margin: auto;
-    width: 70%;
+    width: 90%;
 }
 
 
@@ -22,8 +22,8 @@
 
 mat-list {
     width: 100%;
-    margin-left: 20px;
-    margin-right: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
 
 ::ng-deep .appointments .mat-grid-tile-content {
@@ -54,7 +54,7 @@ mat-list h2 {
     display: flex;
 }
 
-#sidebar {
+/* #sidebar {
     flex-basis: 15rem;
     flex-grow: 1;
     padding: 1rem;
@@ -62,8 +62,10 @@ mat-list h2 {
     height: 100%;
     box-sizing: border-box;
     overflow: auto;
+} */
+.wht{
+    color: whitesmoke;
 }
-
 #map {
     flex-basis: 0;
     flex-grow: 4;
