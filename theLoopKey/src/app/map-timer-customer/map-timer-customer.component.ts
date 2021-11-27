@@ -22,7 +22,7 @@ export class MapTimerCustomerComponent implements OnInit {
     };
 
     this.http
-      .get('http://localhost:8080/api/v1/allAppointments', options)
+      .get('http://localhost:8080/api/v1/appointment/getGet', options)
       .subscribe(response => {
           console.log(response);
       });
