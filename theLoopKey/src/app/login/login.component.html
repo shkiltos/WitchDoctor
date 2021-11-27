@@ -7,6 +7,9 @@
                     <mat-error *ngIf="phoneInvalid">
                         Номер телефона введён некорректно
                     </mat-error>
+                    <mat-error *ngIf="wrongPasswordOrPhone">
+                        Номер телефона или пароль введён неверно
+                    </mat-error>
                     <mat-form-field class="full-width-input">
                         <input matInput placeholder="Телефон" formControlName="phone" required>
                         <mat-error>

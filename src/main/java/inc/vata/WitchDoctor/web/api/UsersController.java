@@ -1,12 +1,14 @@
 package inc.vata.WitchDoctor.web.api;
 
 import inc.vata.WitchDoctor.data.users.UserModel;
-import inc.vata.WitchDoctor.domain.service.authentication.UserModelDetails;
 import inc.vata.WitchDoctor.domain.service.users.UsersService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
-import springfox.documentation.annotations.ApiIgnore;
+
+import java.util.Collections;
+import java.util.Map;
 
 @RestController
 @RequestMapping(
@@ -21,9 +23,18 @@ public class UsersController {
         return this.usersService.createUser(userModel);
     }
 
-    @GetMapping
-    public UserModel whoAmI(@ApiIgnore @AuthenticationPrincipal UserModelDetails userModel) {
-        return userModel.getUser();
+    @PostMapping(value = "/login", consumes = MediaType.APPLICATION_FORM_URLENCODED_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public UserModel login(@RequestParam Map<String, String> creds) {
+        return this.usersService.findUser(creds.get("username"));
     }
+
+//    @GetMapping
+//    public Map<String, String> whoAmI(
+////            @ApiIgnore @AuthenticationPrincipal UserModelDetails userModel
+//    ) {
+////        return Collections.singletonMap("role", userModel.getUser().getRole().getAuthority());
+////        return Collections.singletonMap("role", userModel.getUser().getRole().getAuthority());
+//    }
 
 }

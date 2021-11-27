@@ -6,7 +6,6 @@ import inc.vata.WitchDoctor.data.users.UsersRepository;
 import inc.vata.WitchDoctor.domain.service.roles.RolesService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -20,7 +19,7 @@ public class UsersService {
 
     private final RolesService roleService;
 
-    private final PasswordEncoder passwordEncoder;
+//    private final PasswordEncoder passwordEncoder;
 
     private final UsersRepository usersRepository;
 
@@ -31,7 +30,7 @@ public class UsersService {
 
     @Transactional
     public UserModel createUser(UserModel userModel) {
-        userModel.setPassword(this.passwordEncoder.encode(userModel.getPassword()));
+//        userModel.setPassword(this.passwordEncoder.encode(userModel.getPassword()));
         RoleModel role = userModel.getRole() == null ? this.roleService.getRole(DEFAULT_ROLE) : userModel.getRole();
         userModel.setRole(role);
         return this.usersRepository.save(userModel);
