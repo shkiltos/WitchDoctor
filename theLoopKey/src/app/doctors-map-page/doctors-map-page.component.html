@@ -2,6 +2,7 @@
     <div class="element">
         
         <input type="submit" id="submit" />
+        <button mat-raised-button color="primary">Primary</button>
         <mat-grid-list cols="2" rowHeight="100px">
             <mat-grid-tile class="map-container" [colspan]="2" [rowspan]="1">
                 <form [formGroup]="form" (ngSubmit)="onSubmit()">

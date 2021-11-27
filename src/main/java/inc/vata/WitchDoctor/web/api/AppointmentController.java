@@ -38,7 +38,7 @@ public class AppointmentController {
         return this.appointmentService.createAppointment(appointmentModel);
     }
 
-    @PostMapping("setGeo")
+    @GetMapping("setGeo")
     public HttpStatus updateRecord(
             @RequestParam String region,
             @RequestParam String lat,

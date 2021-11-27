@@ -35,11 +35,12 @@ export class DoctorsMapPageComponent implements OnInit {
   public appointments: Appointment[] = [];
 
   public currentPosition: any;
-
+  
   constructor(private http: HttpClient, private fb: FormBuilder,) {
     this.form = this.fb.group({
       region: ['', Validators.required]
     });
+
   }
 
   ngOnInit(): void {
@@ -53,7 +54,26 @@ export class DoctorsMapPageComponent implements OnInit {
         this.initMap();
       });
     });
+    var theRunner = setInterval(() => { 
+      navigator.geolocation.getCurrentPosition((position) => {
+        this.setDoctorPosition(position.coords.latitude, position.coords.longitude);
+      });
+      }, (1000 * 10)); 
+    
+  }
 
+  private setDoctorPosition(lat: number, lng: number) {
+
+    const options = {
+      headers: new HttpHeaders().set('Content-Type', 'application/json'),
+      params: new HttpParams().set('region', 'Участок 17').set('lat', lat).set('lng', lng)
+    };
+
+    this.http
+      .get('http://localhost:8080/api/v1/appointment/setGeo', options)
+      .subscribe(response => {
+          console.log(response);
+      });
   }
 
   private async getCurrentPosition() {
